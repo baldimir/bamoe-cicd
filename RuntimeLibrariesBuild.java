@@ -27,7 +27,7 @@ class RuntimeLibrariesBuild implements Callable<Integer> {
     @Option(names = {"--mavenProjectDirectory"}, description = "Directory containing bamoe repository." , required = true)
     private File runtimeLibrariesDirectory;
 
-    @Option(names = {"--customSettingsXml"}, description = "Custom setting.xml file")
+    @Option(names = {"--customSettingsXml"}, description = "Custom settings.xml file")
     private File settingsXml;
 
     public static void main(String... args) {
