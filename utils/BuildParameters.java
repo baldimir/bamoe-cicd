@@ -1,8 +1,12 @@
-import java.io.FileInputStream;
+package utils;
+
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
 
 public final class BuildParameters {
+
+    private static final String BUILD_PARAMETERS_FILE = "build-parameters.properties";
 
     private static final String VERSION_BAMOE_KEY = "version.bamoe";
     private static final String VERSION_KOGITO_KEY = "version.kogito";
@@ -17,11 +21,10 @@ public final class BuildParameters {
     private static synchronized void initBuildParameters() {
         if (buildParametersProperties == null) {
             buildParametersProperties = new Properties();
-            final String propertiesPath = Thread.currentThread().getContextClassLoader().getResource("build-parameters.properties").getPath();
-            try (final FileInputStream propertiesStream = new FileInputStream(propertiesPath)) {
+            try (final InputStream propertiesStream = BuildParameters.class.getClassLoader().getResourceAsStream("build-parameters.properties")) {
                 buildParametersProperties.load(propertiesStream);
             } catch (IOException e) {
-                throw new IllegalStateException("Exception reading properties file build-parameters.properties!");
+                throw new IllegalStateException("Exception reading properties file " + BUILD_PARAMETERS_FILE + "!", e);
             }
         }
     }
