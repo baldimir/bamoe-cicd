@@ -1,5 +1,6 @@
 //DEPS org.jboss.shrinkwrap.resolver:shrinkwrap-resolver-api-maven-embedded:3.1.6
 //DEPS org.jboss.shrinkwrap.resolver:shrinkwrap-resolver-impl-maven-embedded:3.1.6
+//SOURCES BuildParameters.java
 
 package utils;
 
@@ -22,10 +23,10 @@ public final class Maven {
         return runMavenConfiguration(mavenRunConfiguration, settingsXml);
     }
 
-    public static int updateVersionOfProject(final File pomXml, final File settingsXml) {
+    public static int updateVersionOfProject(final File pomXml, final File settingsXml, final String newVersion) {
         final ConfigurationDistributionStage mavenRunConfiguration = EmbeddedMaven.forProject(pomXml)
                 .setGoals("versions:set")
-                .addProperty("newVersion", BuildParameters.getVersionBAMOE())
+                .addProperty("newVersion", newVersion)
                 .addProperty("generateBackupPoms", "false")
                 .setQuiet();
         return runMavenConfiguration(mavenRunConfiguration, settingsXml);
@@ -36,6 +37,7 @@ public final class Maven {
                 .setGoals("versions:set-property")
                 .addProperty("property", propertyName)
                 .addProperty("newVersion", propertyValue)
+                .addProperty("generateBackupPoms", "false")
                 .setQuiet();
         return runMavenConfiguration(mavenRunConfiguration, settingsXml);
     }

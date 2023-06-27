@@ -1,6 +1,7 @@
 target/
 local/
 out/
+testsOutput/
 
 # Eclipse, Netbeans and IntelliJ files
 .*

@@ -1,0 +1,4 @@
+<settings xmlns="http://maven.apache.org/SETTINGS/1.1.0">
+  <localRepository>/nonexistent</localRepository>
+  <offline>true</offline>
+</settings>
